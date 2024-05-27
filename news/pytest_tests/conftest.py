@@ -55,6 +55,13 @@ def comment(author):
         )
     return comment
 
+@pytest.fixture
+def form_data():
+    return {
+        'title': 'Новый заголовок',
+        'text': 'Новый текст',
+    }
+
 
 @pytest.fixture
 # Фикстура запрашивает другую фикстуру создания заметки.

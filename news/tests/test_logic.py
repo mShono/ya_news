@@ -146,3 +146,4 @@ class TestCommentEditDelete(TestCase):
         self.comment.refresh_from_db()
         # Проверяем, что текст остался тем же, что и был.
         self.assertEqual(self.comment.text, self.COMMENT_TEXT)
+        

@@ -44,6 +44,7 @@ class TestHomePage(TestCase):
         # Код ответа не проверяем, его уже проверили в тестах маршрутов.
         # Получаем список объектов из словаря контекста.
         object_list = response.context['object_list']
+        print(object_list)
         # Определяем количество записей в списке.
         news_count = object_list.count()
         # Проверяем, что на странице именно 10 новостей.
