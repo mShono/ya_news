@@ -34,6 +34,15 @@ def not_author_client(not_author):
 
 
 @pytest.fixture
+def news(author):
+    news = News.objects.create(
+        title='Заголовок',
+        text='Текст заметки',
+    )
+    return news
+
+
+@pytest.fixture
 def comment(author):
     news = News.objects.create(  # Создаём объект заметки.
         title='Заголовок',
@@ -46,9 +55,18 @@ def comment(author):
         )
     return comment
 
+
 @pytest.fixture
 # Фикстура запрашивает другую фикстуру создания заметки.
-def id_for_args(comment):
+def id_for_args_comment(comment):
     # И возвращает кортеж, который содержит slug заметки.
     # На то, что это кортеж, указывает запятая в конце выражения.
     return (comment.id,)
+
+
+@pytest.fixture
+# Фикстура запрашивает другую фикстуру создания заметки.
+def id_for_args_news(news):
+    # И возвращает кортеж, который содержит slug заметки.
+    # На то, что это кортеж, указывает запятая в конце выражения.
+    return (news.id,)

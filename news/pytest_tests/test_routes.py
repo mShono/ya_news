@@ -2,15 +2,15 @@ import pytest
 
 from http import HTTPStatus
 
-from django.urls import reverse
 from pytest_django.asserts import assertRedirects
+from django.urls import reverse
 
 
 @pytest.mark.parametrize(
     'name, args',
     (
         ('news:home', None),
-        ('news:detail', pytest.lazy_fixture('id_for_args')),
+        ('news:detail', pytest.lazy_fixture('id_for_args_comment')),
         ('users:login', None),
         ('users:logout', None),
         ('users:signup', None),
@@ -44,8 +44,8 @@ def test_home_availability_for_anonymous_user(client, name, args):
 @pytest.mark.parametrize(
     'name, args',
     (
-        ('news:edit', pytest.lazy_fixture('id_for_args')),
-        ('news:delete', pytest.lazy_fixture('id_for_args')),
+        ('news:edit', pytest.lazy_fixture('id_for_args_comment')),
+        ('news:delete', pytest.lazy_fixture('id_for_args_comment')),
     ),
 )
 def test_pages_availability_for_different_users(
@@ -61,8 +61,8 @@ def test_pages_availability_for_different_users(
 @pytest.mark.parametrize(
     'name, args',
     (
-        ('news:edit', pytest.lazy_fixture('id_for_args')),
-        ('news:delete', pytest.lazy_fixture('id_for_args')),
+        ('news:edit', pytest.lazy_fixture('id_for_args_comment')),
+        ('news:delete', pytest.lazy_fixture('id_for_args_comment')),
     ),
 )
 def test_redirects(client, name, args):
