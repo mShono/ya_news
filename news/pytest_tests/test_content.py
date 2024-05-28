@@ -1,24 +1,22 @@
 import pytest
 
+from datetime import datetime, timedelta
+
 from django.conf import settings
 from django.urls import reverse
 
+from news.models import News
 from news.forms import CommentForm
 
 @pytest.mark.django_db
-def test_news_count(client):
-    # assert 0 == 10
+def test_news_count(client, news_fill_in):
     url = reverse('news:home')
     response = client.get(url)
     # Код ответа не проверяем, его уже проверили в тестах маршрутов.
     # Получаем список объектов из словаря контекста.
     object_list = response.context['object_list']
-    print(object_list)
     # Определяем количество записей в списке.
     news_count = object_list.count()
-    # news_count = 0
-    # for news in object_list:
-    #     news_count += 1
     # Проверяем, что на странице именно 10 новостей.
     assert news_count == settings.NEWS_COUNT_ON_HOME_PAGE
 

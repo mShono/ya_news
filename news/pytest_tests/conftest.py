@@ -1,6 +1,8 @@
 import pytest
 
+from datetime import datetime, timedelta
 # Импортируем класс клиента.
+from django.conf import settings
 from django.test.client import Client
 
 # Импортируем модель заметки, чтобы создать экземпляр.
@@ -40,6 +42,21 @@ def news(author):
         text='Текст заметки',
     )
     return news
+
+
+@pytest.fixture
+def news_fill_in():
+    today = datetime.today()
+    all_news = [
+        News(
+            title=f'Новость {index}',
+            text='Просто текст.',
+            date=today - timedelta(days=index)
+        )
+        for index in range(settings.NEWS_COUNT_ON_HOME_PAGE + 1)
+    ]
+    return News.objects.bulk_create(all_news)
+
 
 
 @pytest.fixture

@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta 
+from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -40,6 +40,7 @@ class TestHomePage(TestCase):
 
     def test_news_count(self):
         # Загружаем главную страницу.
+        print(f"URL={self.HOME_URL}")
         response = self.client.get(self.HOME_URL)
         # Код ответа не проверяем, его уже проверили в тестах маршрутов.
         # Получаем список объектов из словаря контекста.
