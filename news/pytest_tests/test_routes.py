@@ -65,6 +65,7 @@ def test_pages_availability_for_different_users(
         ('news:delete', pytest.lazy_fixture('id_for_args_comment')),
     ),
 )
+@pytest.mark.django_db
 def test_redirects(client, name, args):
     login_url = reverse('users:login')
     # Формируем URL в зависимости от того, передан ли объект заметки:

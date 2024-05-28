@@ -36,7 +36,7 @@ def not_author_client(not_author):
 
 
 @pytest.fixture
-def news(author):
+def news():
     news = News.objects.create(
         title='Заголовок',
         text='Текст заметки',
@@ -60,11 +60,7 @@ def news_fill_in():
 
 
 @pytest.fixture
-def comment(author):
-    news = News.objects.create(  # Создаём объект заметки.
-        title='Заголовок',
-        text='Текст заметки',
-    )
+def comment(news, author):
     comment = Comment.objects.create(
             news=news,
             author=author,
@@ -75,8 +71,7 @@ def comment(author):
 @pytest.fixture
 def form_data():
     return {
-        'title': 'Новый заголовок',
-        'text': 'Новый текст',
+        'text': 'Новый комментарий',
     }
 
 

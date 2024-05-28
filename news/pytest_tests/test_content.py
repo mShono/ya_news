@@ -36,6 +36,7 @@ def test_news_order(client):
     assert all_dates == sorted_dates
 
 
+@pytest.mark.django_db
 def test_comments_order(client, id_for_args_news):
     url = reverse('news:detail', args=id_for_args_news)
     response = client.get(url)
